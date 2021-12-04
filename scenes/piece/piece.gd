@@ -73,5 +73,5 @@ func _input_event(_viewport, event, _shape_idx):
 		
 		if targetPos:
 			move(targetPos)
-			showPositions()
+#			showPositions()
 
