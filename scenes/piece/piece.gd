@@ -5,6 +5,9 @@ onready var tween = get_node("Tween")
 export var expectedPos = Vector2(0,0)
 var targetPos
 
+func _ready():
+	self.expectedPos = position
+	
 func getOccupiedPositions():
 	var occupiedPositions = []
 	var pieces = get_tree().get_nodes_in_group("pieces")
