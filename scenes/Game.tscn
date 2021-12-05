@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/piece/piece.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
 [ext_resource path="res://scenes/background.png" type="Texture" id=3]
-[ext_resource path="res://scenes/StartBtn hover.png" type="Texture" id=4]
-[ext_resource path="res://scenes/StartBtn.png" type="Texture" id=5]
-[ext_resource path="res://scenes/StartBtn pressed.png" type="Texture" id=6]
+[ext_resource path="res://scenes/hud/StartBtn hover.png" type="Texture" id=4]
+[ext_resource path="res://scenes/hud/StartBtn.png" type="Texture" id=5]
+[ext_resource path="res://scenes/hud/StartBtn pressed.png" type="Texture" id=6]
+[ext_resource path="res://scenes/hud/StopBtn.png" type="Texture" id=7]
+[ext_resource path="res://scenes/hud/StopBtn hover.png" type="Texture" id=8]
+[ext_resource path="res://scenes/hud/StopBtn pressed.png" type="Texture" id=9]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -93,4 +96,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="pauseButton" type="TextureButton" parent="HUD"]
+visible = false
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 98.0
+margin_bottom = 11.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+
 [connection signal="pressed" from="HUD/startButton" to="." method="_on_startButton_pressed"]
+[connection signal="pressed" from="HUD/pauseButton" to="." method="_on_pauseButton_pressed"]

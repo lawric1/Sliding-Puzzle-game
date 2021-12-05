@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/StartBtn pressed.png-c71f8f93ac25983a0f73e3d97d87c6d5.stex"
+path="res://.import/StartBtn.png-209b1a910a50b3c8a58e8e43ae158fd4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/StartBtn pressed.png"
-dest_files=[ "res://.import/StartBtn pressed.png-c71f8f93ac25983a0f73e3d97d87c6d5.stex" ]
+source_file="res://scenes/hud/StartBtn.png"
+dest_files=[ "res://.import/StartBtn.png-209b1a910a50b3c8a58e8e43ae158fd4.stex" ]
 
 [params]
 

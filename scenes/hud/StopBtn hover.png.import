@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/StartBtn.png-33562041d08c32c4f632c838850be3a7.stex"
+path="res://.import/StopBtn hover.png-c05297cd4a94ea7e45fd923111cb97ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/StartBtn.png"
-dest_files=[ "res://.import/StartBtn.png-33562041d08c32c4f632c838850be3a7.stex" ]
+source_file="res://scenes/hud/StopBtn hover.png"
+dest_files=[ "res://.import/StopBtn hover.png-c05297cd4a94ea7e45fd923111cb97ae.stex" ]
 
 [params]
 

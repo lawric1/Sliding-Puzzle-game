@@ -2,12 +2,12 @@ extends Area2D
 
 onready var tween = get_node("Tween")
 
+var movementEnabled = false
+
 export var expectedPos = Vector2(0,0)
 var targetPos
 
-func _ready():
-	self.expectedPos = position
-	
+
 func getOccupiedPositions():
 	var occupiedPositions = []
 	var pieces = get_tree().get_nodes_in_group("pieces")
@@ -27,6 +27,7 @@ func withinBounds(dir):
 	return true
 	
 	
+# Checks if there's an empty spot in any of the sides of piece
 func getTargetPos():
 	var pos = self.position
 	var occupiedPositions = getOccupiedPositions()
@@ -48,10 +49,11 @@ func getTargetPos():
 func move(pos):
 	tween.interpolate_property(self, "position",
 			self.position, pos, 0.2,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	
+# Helper function for debugging
 func showPositions():
 	var piecesPositions = []
 	var expectedPositions = []
@@ -64,17 +66,21 @@ func showPositions():
 	print(piecesPositions)
 	print(expectedPositions)
 	
-	if piecesPositions == expectedPositions:
-		print('win')
-		
-		
+	
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
-	and event.is_pressed():
+	and event.is_pressed() and movementEnabled:
 		targetPos = getTargetPos()
 		
 		if targetPos:
 			move(targetPos)
-#			showPositions()
 
+# Hover
+func _on_piece_mouse_entered():
+	if movementEnabled:
+		$sprite.modulate = Color(1.3, 1.2, 1)
+
+func _on_piece_mouse_exited():
+	if movementEnabled:
+		$sprite.modulate = Color(1, 1, 1)

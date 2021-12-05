@@ -20,21 +20,33 @@ var skin = [
 
 
 func _ready():
+#	Changes sprite of every piece
 	var pieces = get_tree().get_nodes_in_group("pieces")
 	for index in pieces.size():
 		pieces[index].get_node("sprite").texture = skin[index]
 	
 func _process(_delta):
+	checkWin()
+
+
+func checkWin():
 	var piecesPositions = []
 	var expectedPositions = []
-	
 	var pieces = get_tree().get_nodes_in_group("pieces")
+	
 	for piece in pieces:
 		piecesPositions.append(piece.position)
 		expectedPositions.append(piece.expectedPos)
-	if piecesPositions == expectedPositions:
+	
+	if piecesPositions == expectedPositions and pieces[0].movementEnabled == true:
 		print('win')
-
+		for piece in pieces:
+			piece.movementEnabled = false
+			
+		$HUD/pauseButton.hide()
+		$HUD/startButton.show()
+		
+		
 func shufflePieces(pieces):
 	var possiblePositions = []
 	for piece in pieces:
@@ -50,11 +62,19 @@ func shufflePieces(pieces):
 func _on_startButton_pressed():
 	var pieces = get_tree().get_nodes_in_group("pieces")
 	for piece in pieces:
-		piece.position = piece.expectedPos
+		piece.movementEnabled = true
+		
 	shufflePieces(pieces)
-
-# Hover texture to pieces or shader
-# When start is pressed change texture to stop, shuffle pieces and enable winning condition.
-# Stop resets original state, disable input on pieces and disable winning condition
-# Add Win Screen
 	
+	$HUD/startButton.hide()
+	$HUD/pauseButton.show()
+	
+	
+func _on_pauseButton_pressed():
+	var pieces = get_tree().get_nodes_in_group("pieces")
+	for piece in pieces:
+		piece.position = piece.expectedPos
+		piece.movementEnabled = false
+	
+	$HUD/pauseButton.hide()
+	$HUD/startButton.show()
